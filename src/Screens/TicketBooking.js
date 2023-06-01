@@ -42,19 +42,22 @@ const TicketBooking = () => {
   };
   const handleFormSubmit = async (formData) => {
     let finalFormData = { ...formData, seatNumbers: selectedNumbers };
-    let allData = await localStorage.getItem("formData");
-    let localData = JSON.parse(allData);
-    const newData = [...localData, finalFormData];
-    await localStorage.setItem("formData", JSON.stringify(newData));
+    let newData;
+    if (localStorageData === null) {
+      newData = [finalFormData];
+    } else {
+      newData = [...localStorageData, finalFormData];
+    }
+    localStorage.setItem("formData", JSON.stringify(newData));
     fetchData();
     setSelectedNumbers([]);
-    history('/dashboard')
+    history("/dashboard");
   };
   useEffect(() => {
     fetchData();
   }, [startDate]);
   const fetchData = async () => {
-    let allData = await localStorage.getItem("formData");
+    let allData = localStorage.getItem("formData");
     setLocalStorageData(JSON.parse(allData));
   };
   const year = startDate.getFullYear();

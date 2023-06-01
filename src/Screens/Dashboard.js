@@ -52,7 +52,7 @@ const Dashboard = () => {
   };
   return (
     <div className="container" style={{ marginTop: "20px" }}>
-      {localStorageData[0] ? (
+      { localStorageData && localStorageData[0] ? (
         <div>
           {localStorageData?.map((item, index) => (
             <div
