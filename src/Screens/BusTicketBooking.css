@@ -1,0 +1,23 @@
+.button-row {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    margin-right: 10px;
+  }
+  
+  .btn-selected {
+    background-color: red; /* Change the color as desired */
+    color: white; /* Change the color as desired */
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    background-color: #a0a0a0;
+    padding: 0 10px;
+    border-radius: 10px;
+}
+.view-button {
+    margin-left: auto;
+}
