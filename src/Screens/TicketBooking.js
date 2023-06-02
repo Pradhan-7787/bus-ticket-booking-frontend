@@ -40,8 +40,18 @@ const TicketBooking = () => {
       setSelectedNumbers([...selectedNumbers, number]);
     }
   };
+  // const year = startDate.getFullYear();
+  // const month = String(startDate.getMonth() + 1).padStart(2, "0");
+  // const day = String(startDate.getDate()).padStart(2, "0");
+  // const selectedDate = `${year}-${month}-${day}`;
+  let selectedDate = startDate.toLocaleDateString()
+  // console.log(startDate.toLocaleDateString())
   const handleFormSubmit = async (formData) => {
-    let finalFormData = { ...formData, seatNumbers: selectedNumbers };
+    let finalFormData = {
+      ...formData,
+      seatNumbers: selectedNumbers,
+      date: selectedDate,
+    };
     let newData;
     if (localStorageData === null) {
       newData = [finalFormData];
@@ -60,16 +70,17 @@ const TicketBooking = () => {
     let allData = localStorage.getItem("formData");
     setLocalStorageData(JSON.parse(allData));
   };
-  const year = startDate.getFullYear();
-  const month = String(startDate.getMonth() + 1).padStart(2, "0");
-  const day = String(startDate.getDate()).padStart(2, "0");
-  const formattedDate = `${year}-${month}-${day}`;
+
   return (
     <div className="container" style={{ marginTop: "20px" }}>
+      <h3>Select A Date</h3>
       <DatePicker
         selected={startDate}
         onChange={(date) => setStartDate(date)}
       />
+      <br />
+      <br />
+      <br />
       <h3>Lower Deck</h3>
       <div className="card" style={{ maxWidth: "500px" }}>
         <div className="card-body">
@@ -86,7 +97,7 @@ const TicketBooking = () => {
                 {row1.map((number) => {
                   const isDisabled = localStorageData?.some(
                     (booking) =>
-                      booking.date === formattedDate &&
+                      booking.date === selectedDate &&
                       booking.seatNumbers.includes(number)
                   );
 
@@ -109,7 +120,7 @@ const TicketBooking = () => {
                 {row2.map((number) => {
                   const isDisabled = localStorageData?.some(
                     (booking) =>
-                      booking.date === formattedDate &&
+                      booking.date === selectedDate &&
                       booking.seatNumbers.includes(number)
                   );
 
@@ -136,7 +147,7 @@ const TicketBooking = () => {
               {row3.map((number) => {
                 const isDisabled = localStorageData?.some(
                   (booking) =>
-                    booking.date === formattedDate &&
+                    booking.date === selectedDate &&
                     booking.seatNumbers.includes(number)
                 );
 
@@ -160,7 +171,7 @@ const TicketBooking = () => {
               {row4.map((number) => {
                 const isDisabled = localStorageData?.some(
                   (booking) =>
-                    booking.date === formattedDate &&
+                    booking.date === selectedDate &&
                     booking.seatNumbers.includes(number)
                 );
 
@@ -196,7 +207,7 @@ const TicketBooking = () => {
                 {row5.map((number) => {
                   const isDisabled = localStorageData?.some(
                     (booking) =>
-                      booking.date === formattedDate &&
+                      booking.date === selectedDate &&
                       booking.seatNumbers.includes(number)
                   );
 
@@ -219,7 +230,7 @@ const TicketBooking = () => {
                 {row6.map((number) => {
                   const isDisabled = localStorageData?.some(
                     (booking) =>
-                      booking.date === formattedDate &&
+                      booking.date === selectedDate &&
                       booking.seatNumbers.includes(number)
                   );
 
@@ -246,7 +257,7 @@ const TicketBooking = () => {
               {row7.map((number) => {
                 const isDisabled = localStorageData?.some(
                   (booking) =>
-                    booking.date === formattedDate &&
+                    booking.date === selectedDate &&
                     booking.seatNumbers.includes(number)
                 );
 
@@ -270,7 +281,7 @@ const TicketBooking = () => {
               {row8.map((number) => {
                 const isDisabled = localStorageData?.some(
                   (booking) =>
-                    booking.date === formattedDate &&
+                    booking.date === selectedDate &&
                     booking.seatNumbers.includes(number)
                 );
 
@@ -295,7 +306,7 @@ const TicketBooking = () => {
         </div>
       </div>
       <br />
-      <div>
+      <div style={{ display: "flex" }}>
         <Button variant="primary" onClick={handleButtonClick}>
           Book
         </Button>
@@ -304,7 +315,11 @@ const TicketBooking = () => {
           handleClose={handleCloseModal}
           handleFormSubmit={handleFormSubmit}
         />
+        <Button variant="warning" onClick={()=>setSelectedNumbers([])}>
+          Reset
+        </Button>
       </div>
+
       <br />
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 
 const BookingModal = ({ show, handleClose, handleFormSubmit }) => {
-  const [formData, setFormData] = useState({ name: "", email: "", date: "" });
+  const [formData, setFormData] = useState({ name: "", email: ""});
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -40,7 +40,7 @@ const BookingModal = ({ show, handleClose, handleFormSubmit }) => {
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Form.Group controlId="formDate">
+          {/* <Form.Group controlId="formDate">
             <Form.Label>Email address</Form.Label>
             <Form.Control
               type="date"
@@ -49,7 +49,7 @@ const BookingModal = ({ show, handleClose, handleFormSubmit }) => {
               value={formData.date}
               onChange={handleInputChange}
             />
-          </Form.Group>
+          </Form.Group> */}
           <br />
           <Button variant="primary" type="submit">
             Save

@@ -17,7 +17,6 @@ const EditModal = ({ data, onSave, onClose }) => {
 
     onSave(updatedData);
   };
-
   return (
     <Modal show={true} onHide={handleSave}>
       <Modal.Header closeButton>
@@ -44,7 +43,7 @@ const EditModal = ({ data, onSave, onClose }) => {
           <Form.Group controlId="formDate">
             <Form.Label>Date</Form.Label>
             <Form.Control
-              type="date"
+              type="text"
               value={date}
               onChange={(e) => setDate(e.target.value)}
             />

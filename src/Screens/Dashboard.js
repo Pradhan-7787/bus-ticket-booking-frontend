@@ -20,7 +20,6 @@ const Dashboard = () => {
     localStorage.setItem("formData", JSON.stringify(localStorageData));
     fetchData();
   };
-
   const handleEdit = (index) => {
     setEditData(localStorageData[index]);
     setShowEditModal(true);
@@ -28,10 +27,11 @@ const Dashboard = () => {
 
   const handleSaveData = (updatedData) => {
     const updatedLocalStorageData = localStorageData?.map((item) => {
-      if (item.email === updatedData.email && item.date === updatedData.date) {
-        return updatedData;
-      }
-      return item;
+      // if (item.email === updatedData.email && item.date === updatedData.date) {
+      //   return updatedData;
+      // }
+      // return item;
+      return updatedData;
     });
     localStorage.setItem("formData", JSON.stringify(updatedLocalStorageData));
     setShowEditModal(false);
